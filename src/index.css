@@ -141,6 +141,20 @@
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
+
+  .bg-dynamic-gradient {
+    background: radial-gradient(ellipse at 50% 50%, hsl(var(--primary) / 0.2), transparent 70%),
+                radial-gradient(ellipse at 0% 100%, hsl(var(--secondary) / 0.2), transparent 70%),
+                radial-gradient(ellipse at 100% 100%, hsl(var(--accent) / 0.2), transparent 70%);
+    animation: background-pan 30s linear infinite;
+    background-size: 200% 200%;
+  }
+}
+
+@keyframes background-pan {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes glow-pulse {

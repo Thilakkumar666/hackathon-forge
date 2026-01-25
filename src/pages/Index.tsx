@@ -213,7 +213,7 @@ const Index = () => {
       </section>
 
       {/* What We Do Section */}
-      <section className="py-24 relative">
+      <section className="py-24 relative bg-dynamic-gradient">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -296,7 +296,7 @@ const Index = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-24">
+      <section className="py-24 bg-dynamic-gradient">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-8">
             <motion.div
@@ -376,7 +376,7 @@ const Index = () => {
       </section>
 
       {/* What Makes Us Different */}
-      <section className="py-24">
+      <section className="py-24 bg-dynamic-gradient">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -523,7 +523,7 @@ const Index = () => {
       </section>
 
       {/* Tech Stack Preview */}
-      <section className="py-24 border-t border-border/50">
+      <section className="py-24 border-t border-border/50 bg-dynamic-gradient">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
