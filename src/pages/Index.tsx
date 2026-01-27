@@ -37,28 +37,34 @@ const staggerContainer = {
 
 const features = [
   {
-    icon: Code2,
-    title: "Hackathon Projects",
-    description:
-      "Build real-world solutions for global hackathons hosted by Microsoft, Google, and more.",
+    icon: CheckCircle2,
+    title: "Structured Learning",
+    description: "Introduce students to Microsoft Learn and structured learning paths.",
   },
   {
-    icon: Brain,
-    title: "Technical Workshops",
-    description:
-      "Learn cutting-edge technologies through hands-on workshops and mentorship.",
+    icon: CheckCircle2,
+    title: "Certifications & Badges",
+    description: "Help students prepare for Microsoft certifications and skill badges.",
   },
   {
-    icon: Trophy,
-    title: "Competitions",
-    description:
-      "Compete in national and international coding competitions and showcase your skills.",
+    icon: CheckCircle2,
+    title: "Cohorts & Programs",
+    description: "Encourage participation in Microsoft cohorts, challenges, and programs.",
   },
   {
-    icon: Users,
-    title: "Team Collaboration",
-    description:
-      "Work with passionate peers in cross-functional teams to solve complex problems.",
+    icon: CheckCircle2,
+    title: "Hands-on Projects",
+    description: "Build hands-on projects using Microsoft tools and platforms.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Ambassador Program",
+    description: "Guide interested students towards the Microsoft Learn Student Ambassador program.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Supportive Community",
+    description: "Create a supportive peer community for continuous growth.",
   },
 ];
 
@@ -110,13 +116,37 @@ const values = [
   },
 ];
 
-const differentiators = [
-  "Industry-focused project development",
-  "Mentorship from experienced developers",
-  "Direct industry connections and networking",
-  "Hands-on workshops with real technologies",
-  "Team-based learning environment",
-  "Portfolio-building opportunities",
+const differences = [
+  {
+    icon: Lightbulb,
+    title: "Microsoft-Focused Learning",
+    description:
+      "We work entirely within the Microsoft ecosystem, ensuring students learn tools and technologies used in real-world applications.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Opportunity-Driven Approach",
+    description:
+      "Beyond learning, we guide students toward certifications, cohorts, and programs that offer real recognition.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Hands-On & Practical",
+    description:
+      "We emphasize projects, challenges, and practical implementation, not just theory.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Career & Resume Impact",
+    description:
+      "Every activity is designed to add value to resumes, portfolios, and professional profiles.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Peer-Led Community",
+    description:
+      "Led by student ambassadors and supported by faculty, ArcShift is built by students, for students.",
+  },
 ];
 
 
@@ -227,8 +257,7 @@ const Index = () => {
               What We <span className="gradient-text">Do</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              We're not just a club—we're a launchpad for innovation. Here's how
-              we help you grow.
+              At ArcShift, we focus on learning, practice, and opportunity.
             </p>
           </motion.div>
 
@@ -269,13 +298,13 @@ const Index = () => {
               </h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  ArcShift was founded on the principle that practical experience is paramount in the ever-evolving world of technology. We recognized a need for a student organization that not only keeps pace with industry trends but also actively contributes to them.
+                  ArcShift was started with a simple idea: students should not just learn about technology, but learn using real industry platforms.
                 </p>
                 <p>
-                  In 2022, a team of forward-thinking developers established ArcShift with the mission to create a startup-like environment that fosters agility, innovation, and a results-driven mindset. Our goal is to provide students with invaluable, real-world experience long before they graduate.
+                  We noticed that many students were unaware of the opportunities available through Microsoft-free learning resources, certifications, global programs, cohorts, and recognition that can significantly strengthen their skills and resumes. ArcShift was created to bridge this gap.
                 </p>
                 <p>
-                  Today, ArcShift is a leading technical club, with members who have achieved success in hackathons hosted by major tech companies such as Microsoft, Google, and Meta.
+                  Backed by a Microsoft Learn Student Ambassador and guided by faculty, ArcShift serves as a platform where students explore Microsoft technologies, work on real projects, challenge themselves through cohorts, and grow step by step in their technical and professional journey.
                 </p>
               </div>
             </motion.div>
@@ -312,9 +341,7 @@ const Index = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
               <p className="text-muted-foreground">
-                To empower students with practical technical skills, industry exposure, 
-                and collaborative experiences that prepare them to excel in hackathons 
-                and build successful careers in technology.
+                ArcShift’s mission is to bridge the gap between students and the Microsoft ecosystem by enabling access to learning, certifications, projects, cohorts, and global recognition opportunities.
               </p>
             </motion.div>
 
@@ -330,9 +357,7 @@ const Index = () => {
               </div>
               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
               <p className="text-muted-foreground">
-                To become the most impactful student-led technical community, recognized 
-                globally for producing innovative solutions and developing the next 
-                generation of tech leaders.
+                To empower students with Microsoft technologies, enabling them to learn, build, and grow into confident professionals through real-world skills and global opportunities.
               </p>
             </motion.div>
           </div>
@@ -389,24 +414,21 @@ const Index = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 What Makes Us <span className="gradient-text">Different</span>
               </h2>
-              <p className="text-muted-foreground mb-8">
-                Unlike traditional college clubs, we operate with the intensity and 
-                focus of a startup. Every project we take on has real-world applications, 
-                and every member is pushed to grow beyond their comfort zone.
-              </p>
               
-              <div className="space-y-4">
-                {differentiators.map((item, index) => (
+              <div className="space-y-8">
+                {differences.map((diff, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-3"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span>{item}</span>
+                    <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
+                      <diff.icon className="w-5 h-5 text-primary flex-shrink-0" />
+                      {diff.title}
+                    </h3>
+                    <p className="text-muted-foreground">{diff.description}</p>
                   </motion.div>
                 ))}
               </div>
