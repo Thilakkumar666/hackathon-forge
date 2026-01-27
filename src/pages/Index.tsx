@@ -546,57 +546,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Tech Stack Preview */}
-      <section className="py-24 border-t border-border/50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Technologies We <span className="gradient-text">Master</span>
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our members work with cutting-edge technologies to build innovative solutions
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            {[
-              "React",
-              "Node.js",
-              "Python",
-              "TensorFlow",
-              "AWS",
-              "Docker",
-              "Kubernetes",
-              "Flutter",
-              "Firebase",
-              "MongoDB",
-              "GraphQL",
-              "TypeScript",
-            ].map((tech, index) => (
-              <motion.div
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="px-4 py-2 rounded-full bg-muted/50 border border-border/50 text-sm font-medium hover:border-primary/50 hover:bg-primary/10 transition-all cursor-default"
-              >
-                {tech}
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
     </Layout>
   );
 };
