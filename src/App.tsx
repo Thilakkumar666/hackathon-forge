@@ -12,11 +12,14 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import ScrollRestoration from "./components/ScrollRestoration";
 
+import TechyBackground from "./components/TechyBackground";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <TechyBackground />
       <Toaster />
       <Sonner />
       <BrowserRouter>
