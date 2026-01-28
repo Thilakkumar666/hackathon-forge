@@ -18,8 +18,8 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
-import heroBg from "@/assets/ArchShift_main.png";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
+import HeroScroll from "@/components/HeroScroll";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -154,18 +154,9 @@ const Index = () => {
   useSmoothScroll();
   return (
     <Layout>
+      <HeroScroll />
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroBg}
-            alt="Hero background"
-            className="w-full h-full object-cover opacity-40"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-        </div>
-
         {/* Animated gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
