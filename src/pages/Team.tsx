@@ -1,8 +1,13 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import "@/components/Hexagon.css";
+import React, { useState } from "react"; // Added useState
+import AnimatedHoneycombGrid from "@/components/AnimatedHoneycombGrid"; // Import the new component
+import { teamMembers } from "@/data/team"; // Import the combined team data
 
+// Define TeamMember interface locally to ensure it matches the original file's structure exactly
+// and is available for FacultyCard and AnimatedTeamCard within this file.
 interface TeamMember {
   id: number;
   name: string;
@@ -36,66 +41,7 @@ const facultyTeam: TeamMember[] = [
   },
 ];
 
-const campusAmbassador = {
-  id: 3,
-  name: "Ramprakash R",
-  role: "Campus Ambassador",
-  bio: "Spreading the word about ArcShift across campus.",
-  image: "/src/assets/1.jpg",
-  socials: { twitter: "#", linkedin: "#" },
-};
-
-const leadTeam: TeamMember[] = [
-  {
-    id: 4,
-    name: "Sheerin S",
-    role: "Creative Lead",
-    bio: "Designing the future of ArcShift.",
-    image: "/src/assets/1.jpg",
-    socials: { linkedin: "#" },
-  },
-  {
-    id: 5,
-    name: "Princeton Vishal J",
-    role: "Communications Lead",
-    bio: "Connecting ArcShift with the world.",
-    image: "/src/assets/1.jpg",
-    socials: { twitter: "#", linkedin: "#" },
-  },
-  {
-    id: 6,
-    name: "Dhershini M",
-    role: "Outreach Lead",
-    bio: "Building industry partnerships and sponsorships.",
-    image: "/src/assets/1.jpg",
-    socials: { linkedin: "#", email: "outreach@arcshift.edu" },
-  },
-  {
-    id: 7,
-    name: "Thilak Kumar",
-    role: "Technical Lead",
-    bio: "Leading the technical development of ArcShift.",
-    image: "/src/assets/1.jpg",
-    socials: { github: "#", linkedin: "#" },
-  },
-  {
-    id: 8,
-    name: "E Yagna Sai Harshith",
-    role: "Community Lead",
-    bio: "Building a strong and vibrant community.",
-    image: "/src/assets/1.jpg",
-    socials: { github: "#", linkedin: "#" },
-  },
-  {
-    id: 9,
-    name: "Vivin K S",
-    role: "Operations Lead",
-    bio: "Ensuring the smooth operation of ArcShift.",
-    image: "/src/assets/1.jpg",
-    socials: { github: "#", linkedin: "#" },
-  },
-];
-
+// Re-inserting FacultyCard definition
 const FacultyCard = ({ member }: { member: TeamMember }) => (
   <div className="group p-6 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300 text-center">
     <div className="rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-bold mx-auto mb-4 overflow-hidden w-48 h-48">
@@ -125,59 +71,164 @@ const FacultyCard = ({ member }: { member: TeamMember }) => (
   </div>
 );
 
-const TeamCard = ({ member }: { member: TeamMember }) => (
-  <div className="hexagon">
-    <div className="hexagon-inner">
-      <div className="hexagon-image-container">
-        <img src={member.image} alt={member.name} className="hexagon-image" />
+
+// AnimatedTeamCard will now be defined here, incorporating framer-motion animations
+export const AnimatedTeamCard: React.FC<{
+  member: TeamMember;
+  isHovered: boolean;
+  onHoverStart: (id: number) => void;
+  onHoverEnd: () => void;
+  style?: React.CSSProperties; // For AnimatedHoneycombGrid to pass positioning
+}> = ({ member, isHovered, onHoverStart, onHoverEnd, style }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
+  const handleHoverStart = () => {
+    onHoverStart(member.id);
+    setTimeout(() => setShowDetails(true), 200);
+  };
+
+  const handleHoverEnd = () => {
+    onHoverEnd();
+    setShowDetails(false);
+  };
+
+  return (
+    <motion.div
+      className="hexagon relative"
+      style={{ ...style }} // Apply calculated position
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      initial={false}
+      animate={isHovered ? {
+        scale: 1.35,
+        z: 30,
+        zIndex: 10,
+        borderRadius: '15%',
+      } : {
+        scale: 1,
+        z: 0,
+        zIndex: 1,
+        borderRadius: '0%',
+      }}
+      transition={{
+        type: 'spring',
+        stiffness: 200,
+        damping: 20,
+        mass: 1,
+        duration: isHovered ? 0.5 : 0.3,
+        ease: isHovered ? [0.22, 1, 0.36, 1] : undefined,
+      }}
+    >
+      <div className="hexagon-inner">
+        <motion.div
+          className="hexagon-image-container"
+          initial={false}
+          animate={isHovered ? { y: -30, scale: 0.8 } : { y: 0, scale: 1 }}
+          transition={{
+              type: 'spring',
+              stiffness: 200,
+              damping: 20,
+              mass: 1,
+              duration: isHovered ? 0.3 : 0.2,
+          }}
+        >
+          <img src={member.image} alt={member.name} className="hexagon-image" />
+        </motion.div>
+        <motion.h3
+          className="font-semibold text-lg group-hover:text-primary transition-colors"
+          initial={false}
+          animate={isHovered ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+          transition={{ duration: isHovered ? 0.1 : 0.2 }}
+        >
+          {member.name}
+        </motion.h3>
+
+        <AnimatePresence>
+          {isHovered && showDetails && (
+            <motion.div
+              className="absolute inset-x-0 bottom-0 top-1/2 flex flex-col items-center p-4 text-center bg-gradient-to-t from-[hsl(var(--card))] to-transparent rounded-b-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, staggerChildren: 0.08 }}
+            >
+              <motion.h3
+                className="font-bold text-xl text-foreground mt-2"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+              >
+                {member.name}
+              </motion.h3>
+              <motion.p
+                className="text-sm text-primary mt-1"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.18 }}
+              >
+                {member.role}
+              </motion.p>
+              <motion.p
+                className="text-xs text-muted-foreground mt-2 line-clamp-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.26 }}
+              >
+                {member.bio}
+              </motion.p>
+              <motion.div
+                className="flex gap-2 mt-3"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.34 }}
+              >
+                {member.socials.github && (
+                  <a
+                    href={member.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Github className="w-4 h-4" />
+                  </a>
+                )}
+                {member.socials.linkedin && (
+                  <a
+                    href={member.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                )}
+                {member.socials.twitter && (
+                  <a
+                    href={member.socials.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Twitter className="w-4 h-4" />
+                  </a>
+                )}
+                {member.socials.email && (
+                  <a
+                    href={`mailto:${member.socials.email}`}
+                    className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Mail className="w-4 h-4" />
+                  </a>
+                )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <h3 className="font-semibold text-lg group-hover:text-primary transition-colors">
-        {member.name}
-      </h3>
-      <p className="text-sm text-primary mb-2">{member.role}</p>
-      <div className="flex gap-2 justify-center">
-        {member.socials.github && (
-          <a
-            href={member.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-          >
-            <Github className="w-4 h-4" />
-          </a>
-        )}
-        {member.socials.linkedin && (
-          <a
-            href={member.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-          >
-            <Linkedin className="w-4 h-4" />
-          </a>
-        )}
-        {member.socials.twitter && (
-          <a
-            href={member.socials.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-          >
-            <Twitter className="w-4 h-4" />
-          </a>
-        )}
-        {member.socials.email && (
-          <a
-            href={`mailto:${member.socials.email}`}
-            className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
-          >
-            <Mail className="w-4 h-4" />
-          </a>
-        )}
-      </div>
-    </div>
-  </div>
-);
+    </motion.div>
+  );
+};
+
 
 const Team = () => {
   return (
@@ -246,23 +297,8 @@ const Team = () => {
             </p>
           </motion.div>
 
-          <div className="flex flex-wrap justify-center items-center p-12">
-            <div className="hexagon-row">
-              <TeamCard member={leadTeam[0]} />
-              <TeamCard member={leadTeam[1]} />
-            </div>
-            <div className="hexagon-row -mt-24">
-              <TeamCard member={leadTeam[2]} />
-              <div className="relative mx-4">
-                <TeamCard member={campusAmbassador} />
-              </div>
-              <TeamCard member={leadTeam[3]} />
-            </div>
-            <div className="hexagon-row -mt-24">
-              <TeamCard member={leadTeam[4]} />
-              <TeamCard member={leadTeam[5]} />
-            </div>
-          </div>
+          {/* This is where the AnimatedHoneycombGrid will be used */}
+          <AnimatedHoneycombGrid members={teamMembers} />
         </div>
       </section>
 
