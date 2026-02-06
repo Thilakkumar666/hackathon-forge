@@ -58,7 +58,17 @@ const facultyTeam: TeamMember[] = [
 
 // Re-inserting FacultyCard definition
 const FacultyCard = ({ member }: { member: TeamMember }) => (
-  <div className="group p-6 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300 text-center">
+  <motion.div
+    className="group p-6 rounded-2xl card-gradient border border-border/50 text-center relative overflow-hidden"
+    initial={{ opacity: 0, y: 20, boxShadow: '0 0 0 transparent' }}
+    whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+    whileHover={{
+      scale: 1.05,
+      boxShadow: '0 0 25px rgba(32, 80, 223, 0.7), 0 0 50px rgba(161, 43, 235, 0.5)',
+      transition: { duration: 0.3 }
+    }}
+    viewport={{ once: true, amount: 0.3 }}
+  >
     <div className="rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-primary-foreground font-bold mx-auto mb-4 overflow-hidden w-48 h-48">
       <img
         src={member.image}
@@ -93,7 +103,7 @@ const FacultyCard = ({ member }: { member: TeamMember }) => (
         </a>
       )}
     </div>
-  </div>
+  </motion.div>
 );
 
 
@@ -281,16 +291,22 @@ const Team = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
-            variants={fadeInUp}
+            variants={staggerContainer}
             className="max-w-4xl mx-auto text-center"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <motion.h1
+              variants={fadeInUp}
+              className="text-4xl md:text-6xl font-bold mb-6"
+            >
               Meet Our <span className="gradient-text">Team</span>
-            </h1>
-            <p className="text-xl text-muted-foreground">
+            </motion.h1>
+            <motion.p
+              variants={fadeInUp}
+              className="text-xl text-muted-foreground"
+            >
               The passionate individuals driving innovation and building the future 
               at ArcShift.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>

@@ -42,6 +42,10 @@
     --neon-cyan: 190 80% 55%;
     --neon-pink: 330 80% 60%;
     
+    /* RGB values for custom shadows */
+    --neon-blue-rgb: 32, 80, 223;
+    --neon-purple-rgb: 161, 43, 235;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(235 75% 50%) 0%, hsl(250 80% 55%) 50%, hsl(265 85% 60%) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(190 80% 55%) 0%, hsl(235 75% 50%) 100%);
@@ -148,6 +152,11 @@
                 radial-gradient(ellipse at 100% 100%, hsl(var(--accent) / 0.2), transparent 70%);
     animation: background-pan 30s linear infinite;
     background-size: 200% 200%;
+  }
+
+  .faculty-card-glow {
+    box-shadow: 0 0 25px rgba(var(--neon-blue-rgb), 0.7),
+                0 0 50px rgba(var(--neon-purple-rgb), 0.5);
   }
 }
 
