@@ -19,7 +19,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sheerin S",
     role: "Creative Lead",
     bio: "Designing the future of ArcShift.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/Sheerin.jpeg",
     socials: { linkedin: "#" },
   },
   {
@@ -27,7 +27,7 @@ export const teamMembers: TeamMember[] = [
     name: "Princeton Vishal J",
     role: "Communications Lead",
     bio: "Connecting ArcShift with the world.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/princeton.jpeg",
     socials: { twitter: "#", linkedin: "#" },
   },
   {
@@ -35,7 +35,7 @@ export const teamMembers: TeamMember[] = [
     name: "Ramprakash R",
     role: "Campus Ambassador",
     bio: "Spreading the word about ArcShift across campus.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/ramprakash.jpeg",
     socials: { twitter: "#", linkedin: "#" },
   },
   {
@@ -43,7 +43,7 @@ export const teamMembers: TeamMember[] = [
     name: "Dhershini M",
     role: "Outreach Lead",
     bio: "Building industry partnerships and sponsorships.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/Dhershini M.jpeg",
     socials: { linkedin: "#", email: "outreach@arcshift.edu" },
   },
   {
@@ -51,7 +51,7 @@ export const teamMembers: TeamMember[] = [
     name: "Thilak Kumar",
     role: "Technical Lead",
     bio: "Leading the technical development of ArcShift.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/Thilak kumar k godlook.jpeg",
     socials: { github: "#", linkedin: "#" },
   },
   {
@@ -59,7 +59,7 @@ export const teamMembers: TeamMember[] = [
     name: "E Yagna Sai Harshith",
     role: "Community Lead",
     bio: "Building a strong and vibrant community.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/harshit.jpeg",
     socials: { github: "#", linkedin: "#" },
   },
   {
@@ -67,7 +67,7 @@ export const teamMembers: TeamMember[] = [
     name: "Vivin K S",
     role: "Operations Lead",
     bio: "Ensuring the smooth operation of ArcShift.",
-    image: "/src/assets/1.jpg",
+    image: "/src/assets/Vivin.jpeg",
     socials: { github: "#", linkedin: "#" },
   },
 ];
