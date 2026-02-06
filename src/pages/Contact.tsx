@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Instagram, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Layout from "@/components/layout/Layout";
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
@@ -34,6 +35,11 @@ const socials = [
   { icon: Instagram, name: "Instagram", url: "https://instagram.com" },
 ];
 
+// Replace with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,11 +47,43 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (EMAILJS_PUBLIC_KEY) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    } else {
+      console.error("EmailJS Public Key is not defined.");
+      setSubmitError("Contact form is not configured. Please check console for details.");
+    }
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setIsSubmitted(false);
+    setSubmitError(null);
+
+    try {
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      setSubmitError("Failed to send your message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -239,10 +277,18 @@ const Contact = () => {
                         className="bg-muted/50"
                       />
                     </div>
-
-                    <Button variant="glow" type="submit" className="w-full">
-                      Send Message
-                      <Send className="w-4 h-4" />
+                    {submitError && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-red-500 text-sm text-center"
+                      >
+                        {submitError}
+                      </motion.p>
+                    )}
+                    <Button variant="glow" type="submit" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                      {!isSubmitting && <Send className="w-4 h-4" />}
                     </Button>
                   </form>
                 )}

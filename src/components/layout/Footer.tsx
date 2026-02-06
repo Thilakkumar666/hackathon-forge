@@ -21,9 +21,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                <Rocket className="w-6 h-6 text-primary-foreground" />
-              </div>
+              <img src="/Arc Shift Logo.png" alt="ArcShift Logo" className="h-10 rounded-full" />
               <span className="text-xl font-bold gradient-text">ArcShift</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md mb-6">
@@ -103,13 +101,12 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4" />
-                arcshift@college.edu
+                arcshiftofficial@gmail.com
               </li>
-              <li className="text-muted-foreground">
-                Tech Building, Room 301
-              </li>
-              <li className="text-muted-foreground">
-                Innovation University
+              <li className="text-muted-foreground whitespace-pre-line">
+                C block No.1, Jawaharlal
+                Nehru Rd, Vadapalani Chennai,
+                Tamil Nadu 600026
               </li>
             </ul>
           </div>
