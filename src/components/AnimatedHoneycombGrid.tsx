@@ -111,9 +111,9 @@ const AnimatedHoneycombGrid: React.FC<AnimatedHoneycombGridProps> = ({ members }
 
         const effectiveHexagonSize = HEX_DEFAULT_WIDTH; // Using width as a base for push magnitude
 
-        const maxPushDistance = effectiveHexagonSize * 1.5; // Cards within this radius are affected
-        const minPush = 20; // Minimum push in pixels
-        const maxPush = 60; // Maximum push in pixels
+        const maxPushDistance = effectiveHexagonSize * 2.5; // Cards within this radius are affected (Increased from 1.5 to 2.5)
+        const minPush = 30; // Minimum push in pixels (Increased from 20)
+        const maxPush = 100; // Maximum push in pixels (Increased from 60)
 
         if (distance < maxPushDistance && distance > 0) {
           const normalizedDistance = Math.min(distance / maxPushDistance, 1);
@@ -209,7 +209,7 @@ const AnimatedHoneycombGrid: React.FC<AnimatedHoneycombGridProps> = ({ members }
                 opacity: hex.opacity,
                 scale: hex.scale,
               }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20, mass: 0.8 }}
+              transition={{ type: 'spring', stiffness: 80, damping: 15, mass: 1 }}
             >
               <AnimatedTeamCard
                 member={hex.member}
