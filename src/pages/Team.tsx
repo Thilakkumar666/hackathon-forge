@@ -158,13 +158,13 @@ export const AnimatedTeamCard: React.FC<{
         <motion.div
           className="hexagon-image-container"
           initial={false}
-          animate={isHovered ? { y: -30, scale: 0.8 } : { y: 0, scale: 1 }}
+          animate={isHovered ? { y: -40, scale: 0.75 } : { y: 0, scale: 1 }}
           transition={{
               type: 'spring',
-              stiffness: 200,
-              damping: 20,
+              stiffness: 150,
+              damping: 15,
               mass: 1,
-              duration: isHovered ? 0.3 : 0.2,
+              duration: isHovered ? 0.4 : 0.2,
           }}
         >
           <img src={member.image} alt={member.name} className="hexagon-image" />

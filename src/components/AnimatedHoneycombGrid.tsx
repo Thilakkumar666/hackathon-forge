@@ -178,12 +178,21 @@ const AnimatedHoneycombGrid: React.FC<AnimatedHoneycombGridProps> = ({ members }
         <motion.div
           className="relative"
           style={{ width: gridDimensions.width, height: gridDimensions.height }}
-          initial={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0.9, opacity: 0, y: 50 }}
+          whileInView={{ scale: 1, opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
           animate={{
               scale: hoveredId ? 0.95 : 1, // Slight scale down of entire grid
               opacity: hoveredId ? 0.95 : 1,
           }}
-          transition={{ duration: 0.3 }}
+          transition={{
+            type: 'spring',
+            stiffness: 100,
+            damping: 20,
+            mass: 0.5,
+            delayChildren: 0.2,
+            staggerChildren: 0.05
+          }}
         >
           {hexGridWithPush.map((hex) => (
             <motion.div
