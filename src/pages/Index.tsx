@@ -202,7 +202,7 @@ const Index = () => {
             >
               <Link to="/join">
                 <Button variant="glow" size="lg" className="w-full sm:w-auto">
-                  Join the Club
+                  Join the Community
                   <ArrowRight className="w-5 h-5" />
                 </Button>
               </Link>

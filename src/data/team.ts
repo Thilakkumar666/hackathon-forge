@@ -29,7 +29,7 @@ export const teamMembers: TeamMember[] = [
     role: "Outreach Lead",
     bio: "Building industry partnerships and sponsorships.",
     image: "/src/assets/Dhershini M.jpeg",
-    socials: { linkedin: "#", email: "outreach@arcshift.edu", instagram: "https://www.instagram.com/dhersheni_m/" },
+    socials: { linkedin: "https://www.linkedin.com/in/dhersheni-murali22/", email: "dhersheni22@gmail.com", instagram: "#" },
   },
   {
     id: 5,
