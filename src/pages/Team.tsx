@@ -1,10 +1,24 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Instagram } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import "@/components/Hexagon.css";
 import React, { useState } from "react"; // Added useState
 import AnimatedHoneycombGrid from "@/components/AnimatedHoneycombGrid"; // Import the new component
 import { teamMembers } from "@/data/team"; // Import the combined team data
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
 // Define TeamMember interface locally to ensure it matches the original file's structure exactly
 // and is available for FacultyCard and AnimatedTeamCard within this file.
@@ -19,22 +33,23 @@ interface TeamMember {
     linkedin?: string;
     twitter?: string;
     email?: string;
+    instagram?: string;
   };
 }
 
 const facultyTeam: TeamMember[] = [
   {
     id: 1,
-    name: "Dr. Placeholder 1",
-    role: "Faculty Advisor",
+    name: "Dr. P. Chitra",
+    role: "HOD (E-Tech)",
     bio: "Guiding the next generation of innovators.",
     image: "/src/assets/Dr. P. Chitra.jpeg",
     socials: { linkedin: "#" },
   },
   {
     id: 2,
-    name: "Dr. Placeholder 2",
-    role: "Faculty Advisor",
+    name: "Dr. S. Jayalakshmi",
+    role: "Faculty coordinator",
     bio: "Expert in machine learning and AI.",
     image: "/src/assets/Dr. S. Jayalakshmi.jpeg",
     socials: { linkedin: "#" },
@@ -65,6 +80,16 @@ const FacultyCard = ({ member }: { member: TeamMember }) => (
           className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
         >
           <Linkedin className="w-4 h-4" />
+        </a>
+      )}
+      {member.socials.instagram && (
+        <a
+          href={member.socials.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+        >
+          <Instagram className="w-4 h-4" />
         </a>
       )}
     </div>
@@ -220,6 +245,16 @@ export const AnimatedTeamCard: React.FC<{
                     <Mail className="w-4 h-4" />
                   </a>
                 )}
+                {member.socials.instagram && (
+                  <a
+                    href={member.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all"
+                  >
+                    <Instagram className="w-4 h-4" />
+                  </a>
+                )}
               </motion.div>
             </motion.div>
           )}
@@ -233,6 +268,12 @@ export const AnimatedTeamCard: React.FC<{
 const Team = () => {
   return (
     <Layout>
+      <motion.div
+        initial="initial"
+        animate="animate"
+        variants={staggerContainer}
+      >
+
       {/* Hero Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
@@ -240,8 +281,7 @@ const Team = () => {
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={fadeInUp}
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -328,6 +368,7 @@ const Team = () => {
           </motion.div>
         </div>
       </section>
+      </motion.div>
     </Layout>
   );
 };

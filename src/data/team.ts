@@ -8,7 +8,8 @@ export interface TeamMember {
     github?: string;
     linkedin?: string;
     twitter?: string;
-    email?: string; // Added email
+    email?: string;
+    instagram?: string;
   };
 }
 
@@ -20,7 +21,7 @@ export const teamMembers: TeamMember[] = [
     role: "Creative Lead",
     bio: "Designing the future of ArcShift.",
     image: "/src/assets/Sheerin.jpeg",
-    socials: { linkedin: "#" },
+    socials: { linkedin: "#", instagram: "https://www.instagram.com/sheerin_s/" },
   },
   {
     id: 6,
@@ -28,7 +29,7 @@ export const teamMembers: TeamMember[] = [
     role: "Outreach Lead",
     bio: "Building industry partnerships and sponsorships.",
     image: "/src/assets/Dhershini M.jpeg",
-    socials: { linkedin: "#", email: "outreach@arcshift.edu" },
+    socials: { linkedin: "#", email: "outreach@arcshift.edu", instagram: "https://www.instagram.com/dhersheni_m/" },
   },
   {
     id: 5,
@@ -52,7 +53,7 @@ export const teamMembers: TeamMember[] = [
     role: "Technical Lead",
     bio: "Leading the technical development of ArcShift.",
     image: "/src/assets/Thilak kumar k godlook.jpeg",
-    socials: { github: "#", linkedin: "#" },
+    socials: { linkedin: "https://www.linkedin.com/in/thilak-kumar-k/"  ,github: "https://github.com/Thilakkumar-K"},
   },
   {
     id: 8,
@@ -60,7 +61,7 @@ export const teamMembers: TeamMember[] = [
     role: "Community Lead",
     bio: "Building a strong and vibrant community.",
     image: "/src/assets/harshit.jpeg",
-    socials: { github: "#", linkedin: "#" },
+    socials: { linkedin: "https://www.linkedin.com/in/yagna-sai-harshith-eedpuganti-118b952a8" , github: "https://github.com/Thilakkumar-K" },
   },
   {
     id: 9,
