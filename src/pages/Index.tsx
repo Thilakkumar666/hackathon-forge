@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Zap,
-  Code2,
+  Code,
   Users,
   Trophy,
   Calendar,
@@ -15,6 +15,10 @@ import {
   Eye,
   Lightbulb,
   CheckCircle2,
+  Book,
+  Award,
+  Star,
+  HeartHandshake,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
@@ -38,32 +42,32 @@ const staggerContainer = {
 
 const features = [
   {
-    icon: CheckCircle2,
+    icon: Book,
     title: "Structured Learning",
     description: "Introduce students to Microsoft Learn and structured learning paths.",
   },
   {
-    icon: CheckCircle2,
+    icon: Award,
     title: "Certifications & Badges",
     description: "Help students prepare for Microsoft certifications and skill badges.",
   },
   {
-    icon: CheckCircle2,
+    icon: Users,
     title: "Cohorts & Programs",
     description: "Encourage participation in Microsoft cohorts, challenges, and programs.",
   },
   {
-    icon: CheckCircle2,
+    icon: Code,
     title: "Hands-on Projects",
     description: "Build hands-on projects using Microsoft tools and platforms.",
   },
   {
-    icon: CheckCircle2,
+    icon: Star,
     title: "Ambassador Program",
     description: "Guide interested students towards the Microsoft Learn Student Ambassador program.",
   },
   {
-    icon: CheckCircle2,
+    icon: HeartHandshake,
     title: "Supportive Community",
     description: "Create a supportive peer community for continuous growth.",
   },
@@ -106,7 +110,7 @@ const values = [
     description: "Success comes from teamwork. We build together, learn together, and grow together.",
   },
   {
-    icon: Code2,
+    icon: Code,
     title: "Technical Excellence",
     description: "We strive for clean code, best practices, and continuous improvement in our craft.",
   },
@@ -253,7 +257,7 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
