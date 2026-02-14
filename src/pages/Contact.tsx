@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send, Github, Linkedin, Twitter, Instagram, CheckCircle2 } from "lucide-react";
+import { Mail, MapPin, Phone, Send, Github, Linkedin, Instagram, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -29,10 +29,9 @@ const contactInfo = [
 ];
 
 const socials = [
-  { icon: Github, name: "GitHub", url: "https://github.com" },
-  { icon: Linkedin, name: "LinkedIn", url: "https://linkedin.com" },
-  { icon: Twitter, name: "Twitter", url: "https://twitter.com" },
-  { icon: Instagram, name: "Instagram", url: "https://instagram.com" },
+  { icon: Github, name: "GitHub", url: "https://github.com/ArcShift-Official" },
+  { icon: Linkedin, name: "LinkedIn", url: "https://www.linkedin.com/company/arc-shift1/" },
+  { icon: Instagram, name: "Instagram", url: "https://www.instagram.com/arc_shift_srm_vdp?utm_source=qr&igsh=a2tqdjFwMDFlNzBr" },
 ];
 
 // Replace with your actual EmailJS credentials
