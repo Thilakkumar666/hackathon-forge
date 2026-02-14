@@ -47,9 +47,11 @@ const Join = () => {
     why: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New state for loading
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true on submission
 
     try {
       await fetch(
@@ -67,6 +69,7 @@ const Join = () => {
       // Since we cannot read response in no-cors mode,
       // reaching here means SUCCESS 🎉
       setIsSubmitted(true);
+      setIsLoading(false); // Set loading to false after success
 
       setFormData({
         name: "",
@@ -80,6 +83,7 @@ const Join = () => {
     } catch (error) {
       console.error("Error submitting application:", error);
       alert("Something went wrong. Please try again.");
+      setIsLoading(false); // Set loading to false after error
     }
   };
 
@@ -306,9 +310,9 @@ const Join = () => {
                       />
                     </div>
 
-                    <Button variant="glow" type="submit" className="w-full">
-                      Submit Application
-                      <ArrowRight className="w-4 h-4" />
+                    <Button variant="glow" type="submit" className="w-full" disabled={isLoading}>
+                      {isLoading ? "Submitting..." : "Submit Application"}
+                      {isLoading ? null : <ArrowRight className="w-4 h-4" />}
                     </Button>
                   </form>
                 )}

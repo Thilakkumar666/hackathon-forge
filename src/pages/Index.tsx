@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Zap,
@@ -24,8 +24,8 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 import { useSmoothScroll } from "@/hooks/use-smooth-scroll";
 import HeroScroll from "@/components/HeroScroll";
-import React, { useState, useEffect } from "react"; // Import useState and useEffect
-import { events } from "@/data/eventData"; // Import events from data file
+import React, { useState, useEffect } from "react";
+import { events } from "@/data/eventData";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -142,6 +142,12 @@ const differences = [
 
 const Index = () => {
   useSmoothScroll();
+  const navigate = useNavigate();
+
+  const handleEventClick = (eventId: number) => {
+    navigate('/events', { state: { highlightedEventId: eventId } });
+  };
+
   return (
     <Layout>
       <HeroScroll />
@@ -431,8 +437,12 @@ const Index = () => {
                   key={index}
                   className="p-6 rounded-2xl card-gradient border border-border/50 text-center"
                 >
-                  <div className="text-3xl font-bold gradient-text mb-1">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -473,7 +483,8 @@ const Index = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group p-6 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300"
+                className="group p-6 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300 cursor-pointer"
+                onClick={() => handleEventClick(event.id)}
               >
                 <div className="flex items-center gap-2 mb-4">
                   <Calendar className="w-4 h-4 text-primary" />

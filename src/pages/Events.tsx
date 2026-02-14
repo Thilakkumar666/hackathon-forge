@@ -1,3 +1,5 @@
+import { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Users, ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,6 +28,27 @@ const upcomingEvents = events.filter((e) => e.isUpcoming);
 const pastEvents = events.filter((e) => !e.isUpcoming);
 
 const Events = () => {
+  const location = useLocation();
+  const highlightedEventId = location.state?.highlightedEventId;
+  const eventRefs = useRef<{ [key: number]: HTMLDivElement | null }>({});
+
+  useEffect(() => {
+    if (highlightedEventId && eventRefs.current[highlightedEventId]) {
+      eventRefs.current[highlightedEventId]?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+      // Optionally, add a temporary class for visual highlighting
+      const element = eventRefs.current[highlightedEventId];
+      if (element) {
+        element.classList.add("border-primary", "shadow-lg", "scale-[1.02]", "transition-all", "duration-500");
+        setTimeout(() => {
+          element.classList.remove("border-primary", "shadow-lg", "scale-[1.02]");
+        }, 3000);
+      }
+    }
+  }, [highlightedEventId]);
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -70,11 +93,14 @@ const Events = () => {
             {upcomingEvents.map((event, index) => (
               <motion.div
                 key={event.id}
+                ref={(el) => (eventRefs.current[event.id] = el)}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group p-6 md:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300"
+                className={`group p-6 md:p-8 rounded-2xl card-gradient border border-border/50 hover:border-primary/50 transition-all duration-300 ${
+                  highlightedEventId === event.id ? "ring-4 ring-primary/50 shadow-primary/50" : ""
+                }`}
               >
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
                   <div className="flex-1">
