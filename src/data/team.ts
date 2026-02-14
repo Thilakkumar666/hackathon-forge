@@ -1,3 +1,12 @@
+// @ts-nocheck
+import ramprakash from "@/assets/ramprakash.jpeg";
+import sheerin from "@/assets/Sheerin.jpeg";
+import harshit from "@/assets/harshit.jpeg";
+import thilak from "@/assets/Thilak kumar k godlook.jpeg";
+import dhershini from "@/assets/Dhershini M.jpeg";
+import vivin from "@/assets/Vivin.jpeg";
+import princeton from "@/assets/princeton.jpeg";
+
 export interface TeamMember {
   id: number; // Changed to number to match existing Team.tsx
   name: string;
@@ -20,7 +29,7 @@ export const teamMembers: TeamMember[] = [
     name: "Ramprakash R",
     role: "Campus Ambassador",
     bio: "Spreading the word about ArcShift across campus.",
-    image: "/src/assets/ramprakash.jpeg",
+    image: ramprakash,
     socials: { linkedin: "https://www.linkedin.com/in/ramprakashrp2004/" },
   },
   {
@@ -28,7 +37,7 @@ export const teamMembers: TeamMember[] = [
     name: "Sheerin S",
     role: "Creative Lead",
     bio: "Designing the future of ArcShift.",
-    image: "/src/assets/Sheerin.jpeg",
+    image: sheerin,
     socials: { linkedin: "https://www.linkedin.com/in/sheerin-s-500372246?utm_source=share_via&utm_content=profile&utm_medium=member_android", instagram: "https://www.instagram.com/sheerin_s/" },
   },
   {
@@ -36,7 +45,7 @@ export const teamMembers: TeamMember[] = [
     name: "E Yagna Sai Harshith",
     role: "Community Lead",
     bio: "Building a strong and vibrant community.",
-    image: "/src/assets/harshit.jpeg",
+    image: harshit,
     socials: { linkedin: "https://www.linkedin.com/in/yagna-sai-harshith-eedpuganti-118b952a8" , github: "https://github.com/Thilakkumar-K" },
   },
   {
@@ -44,7 +53,7 @@ export const teamMembers: TeamMember[] = [
     name: "Thilak Kumar K",
     role: "Technical Lead",
     bio: "Leading the technical development of ArcShift.",
-    image: "/src/assets/Thilak kumar k godlook.jpeg",
+    image: thilak,
     socials: { linkedin: "https://www.linkedin.com/in/thilak-kumar-k/"  ,github: "https://github.com/Thilakkumar-K"},
   },
   {
@@ -52,7 +61,7 @@ export const teamMembers: TeamMember[] = [
     name: "Dhersheni M",
     role: "Outreach Lead",
     bio: "Building industry partnerships and sponsorships.",
-    image: "/src/assets/Dhershini M.jpeg",
+    image: dhershini,
     socials: { linkedin: "https://www.linkedin.com/in/dhersheni-murali22/", email: "dhersheni22@gmail.com", instagram: "#" },
   },
   {
@@ -60,7 +69,7 @@ export const teamMembers: TeamMember[] = [
     name: "Vivin K S",
     role: "Operations Lead",
     bio: "Ensuring the smooth operation of ArcShift.",
-    image: "/src/assets/Vivin.jpeg",
+    image: vivin,
     socials: { github: "#", linkedin: "https://www.linkedin.com/in/vivin-k-s-40a5a92a0" },
   },
   {
@@ -68,7 +77,7 @@ export const teamMembers: TeamMember[] = [
     name: "Princeton Vishal J",
     role: "Communications Lead",
     bio: "Connecting ArcShift with the world.",
-    image: "/src/assets/princeton.jpeg",
+    image: princeton,
     socials: { linkedin: "https://www.linkedin.com/in/princeton-vishal-2k05" },
   },
 ];

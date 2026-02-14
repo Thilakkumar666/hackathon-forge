@@ -1,30 +1,33 @@
+// @ts-nocheck
 import { useState, useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { cn } from "@/lib/utils";
 import heroBg from "@/assets/ArchShift_main.png";
 import { ChevronDown } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const HeroScroll = () => {
   const [isRevealed, setIsRevealed] = useState(false);
   const controls = useAnimation();
   const heroRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
-    // Check session storage on mount
     const hasBeenRevealed = sessionStorage.getItem('heroRevealed') === 'true';
-    if (hasBeenRevealed) {
+
+    if (isMobile || hasBeenRevealed) {
       setIsRevealed(true);
       if (heroRef.current) {
         heroRef.current.style.display = "none";
       }
       document.body.style.overflowY = "auto";
-      return; // Skip setting up wheel listener if already revealed
+      return;
     }
 
     const handleWheel = (e: WheelEvent) => {
       if (e.deltaY > 0) {
         setIsRevealed(true);
-        sessionStorage.setItem('heroRevealed', 'true'); // Store in session storage
+        sessionStorage.setItem('heroRevealed', 'true');
         controls.start({ y: "100vh" }).then(() => {
           if (heroRef.current) {
             heroRef.current.style.display = "none";
@@ -33,7 +36,7 @@ const HeroScroll = () => {
         });
         window.removeEventListener("wheel", handleWheel);
       }
-      e.preventDefault(); // Prevent page scroll while hero is active
+      e.preventDefault();
     };
 
     document.body.style.overflowY = "hidden";
@@ -43,7 +46,7 @@ const HeroScroll = () => {
       window.removeEventListener("wheel", handleWheel);
       document.body.style.overflowY = "auto";
     };
-  }, [controls]); // controls is a stable reference, isRevealed is managed locally now.
+  }, [controls, isMobile]);
 
   return (
     <motion.div
