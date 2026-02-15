@@ -46,7 +46,7 @@ const facultyTeam: TeamMember[] = [
     name: "Dr. P. Chitra",
     role: "HOD (E-Tech)",
     bio: "Guiding the next generation of innovators.",
-    image: "/src/assets/dr-p-chitra.jpeg",
+    image: chitra,
     socials: { linkedin: "#" },
   },
   {
@@ -54,7 +54,7 @@ const facultyTeam: TeamMember[] = [
     name: "Dr. S. Jayalakshmi",
     role: "Faculty coordinator",
     bio: "Expert in machine learning and AI.",
-    image: "/src/assets/dr-s-jayalakshmi.jpeg",
+    image: jayalakshmi,
     socials: { linkedin: "#" },
   },
 ];
